@@ -4,12 +4,12 @@
 
 Developers:
 **Nathan Justin**  
-: Project Manager
+Project Manager
 **Dylan Hughes**  
-: Backend
+Backend
 **Caleb Harris**  
-: Backend
+Backend
 **Jonathan Grovo**  
-: Frontend
+Frontend
 **Ethan Huyck**  
-: Frontend
+Frontend
