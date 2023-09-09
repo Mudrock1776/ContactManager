@@ -44,23 +44,26 @@
   padding-top: 30px;
 }
 
-.content-divider {
+/* .content-divider {
   padding-left: 8px;
   padding-right: 14px;
   font-size: 25px;
   padding-top: 25px;
-}
+} */
 
-.discordtxt {
+/* .discordtxt {
   padding-left: 8px;
   padding-right: 30px;
   padding-top: 30px;
-  /* text-shadow: 0px 0px 12px black; */
-}
+  text-shadow: 0px 0px 12px black;
+} */
 
 .discordicon {
-  width: 20px;
-  padding-top: 33px;
+  width: 40px;
+  /* padding-top: 30px;
+  padding-right: 30px; */
+  margin-top: 30px;
+  margin-right: 30px;
 }
 
 
