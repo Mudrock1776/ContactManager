@@ -1,6 +1,6 @@
 // setup
+//canvas object
 let canvas = document.getElementById('canvas1');
-// let canvas = document.getElementById('canvas1');
 
 const ctx = canvas.getContext('2d');
 canvas.width = window.innerWidth;
@@ -44,9 +44,12 @@ function resizeCanvas() {
 class Particle {
     constructor(effect){
         this.effect = effect;
+        // sets particle size randomly
         this.radius = Math.random() * 3 + 1;
+        // sets particle position in window randomly
         this.x = this.radius + Math.random() * (this.effect.width - this.radius * 2);
         this.y = this.radius + Math.random() * (this.effect.height - this.radius * 2);
+        // sets particle velocity randomly
         this.vx = (Math.random() * 1 - 0.5) * 0.5;
         this.vy = (Math.random() * 1 - 0.5) * 0.5;
     }
