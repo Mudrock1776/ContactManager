@@ -1,7 +1,2 @@
-Contact Manager for COP4331C
-Developers:
-Dylan Hughes
-Caleb Harris
-Jonathan Grovo
-Ethan
-Nathan Justin
+Dylan's LAMP Refrence Code
+PLEASE NOTE: This is for a 2 table system and our table per user system will be slightly diffrent.
