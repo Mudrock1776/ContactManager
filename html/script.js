@@ -20,7 +20,8 @@ ctx.strokeStyle = gradient;
 // handles window resizing
 function resizeCanvas() {
     // canvas width and height are set to new window width and height
-    canvas.width = window.innerWidth;
+    // canvas.width = window.innerWidth;
+    canvas.width  = document.documentElement.clientWidth; // ensures theres no horizontal scrollbar
     canvas.height = window.innerHeight + window.scrollY; // accounts for scroll
 
     // recreate canvas gradiewnt
