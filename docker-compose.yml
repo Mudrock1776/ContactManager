@@ -1,0 +1,17 @@
+version: "3"
+services:
+  apache:
+    image: php:8.2.10-apache # latest php version
+    ports:
+      - "80:80" # port for http requests, edit if necessary
+    volumes:
+      ./html:/var/www/html # gets all files needed
+    depends_on:
+      - mysql
+
+  mysql:
+    image: mysql:5.7
+    #modify login credentials as desired
+    environment:
+      MYSQL_ROOT_PASSWORD: jongCON2023!
+      MYSQL_DATABASE: dockertest
