@@ -7,7 +7,7 @@ if (isset($_POST["FirstName"]) and isset($_POST["LastName"]) and isset($_POST["e
     $lastname = $_POST["LastName"];
     $email = $_POST["email"];
     $phonenumber = $_POST["phonenumber"];
-    $conn->query("INSERT INTO contacts (FirstName, LastName, Email, PhoneNumber, user) VALUES ('$firstname','$lastname','$email','$phonenumber','$user')");
+    $conn->query("INSERT INTO contacts (FirstName, LastName, Email, PhoneNumber, user, Date) VALUES ('$firstname','$lastname','$email','$phonenumber','$user',CURDATE())");
 }
 ?>
 <html>
@@ -27,7 +27,7 @@ if (isset($_POST["FirstName"]) and isset($_POST["LastName"]) and isset($_POST["e
         <?php 
         if(isset($_GET["search"]) and $_GET["search"] != ""){
             $search = $_GET["search"];
-            $sql = "SELECT * FROM contacts WHERE user='$user' AND (firstname LIKE '%$search%' OR lastname LIKE '%$search%' OR email LIKE '%$search%' OR phonenumber LIKE '%$search%')";
+            $sql = "SELECT * FROM contacts WHERE user='$user' AND (firstname LIKE '%$search%' OR lastname LIKE '%$search%' OR email LIKE '%$search%' OR phonenumber LIKE '%$search%' OR date LIKE '%$search%')";
         } else {
             $sql = "SELECT * FROM contacts WHERE user='$user'";
         }
@@ -38,7 +38,8 @@ if (isset($_POST["FirstName"]) and isset($_POST["LastName"]) and isset($_POST["e
                 First Name: <?php echo $row["FirstName"]; ?><br>
                 Last Name: <?php echo $row["LastName"]; ?><br>
                 Email: <?php echo $row["Email"]; ?><br>
-                Phonenumber: <?php echo $row["PhoneNumber"]; ?><br>
+                Phone Number: <?php echo $row["PhoneNumber"]; ?><br>
+				Date Updated: <?php echo $row["Date"]; ?><br>
                 <form action="edititem.php" method="post">
                     <button type="submit" value="<?php echo $row["Id"];?>" name="ID">edit</button>
                 </form>

@@ -10,7 +10,7 @@ if (isset($_POST["FirstName"]) and isset($_POST["LastName"]) and isset($_POST["e
     $email = $_POST["email"];
     $phonenumber = $_POST["phonenumber"];
 
-    $sql = "UPDATE contacts SET FirstName='$firstname', LastName='$lastname', Email='$email', PhoneNumber='$phonenumber' WHERE Id = $id AND user='$user'";
+    $sql = "UPDATE contacts SET FirstName='$firstname', LastName='$lastname', Email='$email', PhoneNumber='$phonenumber', Date=CURDATE() WHERE Id = $id AND user='$user'";
     $conn->query($sql);
     header("Location: main.php");
     exit();
