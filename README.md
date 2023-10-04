@@ -1,7 +1,8 @@
-Contact Manager for COP4331C
-Developers:
-Dylan Hughes
-Caleb Harris
-Jonathan Grovo
-Ethan
-Nathan Justin
+## Contact Manager for COP4331C
+
+Team Members:  
+**Nathan Justin** - Project Manager  
+**Dylan Hughes** - Backend  
+**Caleb Harris** - Backend  
+**Jonathan Grovo** - Frontend  
+**Ethan Huyck** - Frontend
