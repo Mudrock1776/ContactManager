@@ -42,7 +42,6 @@ function registerUser() {
     const username = document.querySelector("#usernameField").value;
     const password = document.querySelector("#passwordField").value;
 
-
     // fetch is an API that is used to make an asynchronous HTTP POST request
     // from the register.php page
     fetch("newUser.php", {
@@ -65,9 +64,7 @@ function registerUser() {
         } else {
 
             // to ensure the error message doesn't reset when button is clicked too fast
-            if (errorContainer.classList.contains('error-message-display')) {
-                return;
-            } else {
+            if (!errorContainer.classList.contains('error-message-display')) {
                 errorContainer.textContent = "";
                 // display error message returned by server
                 errorContainer.textContent = data.message;

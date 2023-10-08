@@ -22,7 +22,7 @@ $data = file_get_contents('php://input');
 $jsonData = json_decode($data, true); // true as second parameter returns an associative array
 
 // we want to get the id associated with the contact
-$contact_id = $jsonData['contact_id'];
+$contact_id = $jsonData['deleteContact'];
 
 // query that updates the contact information as long as it matches the current user and the contact's ID
 $sql = "DELETE FROM contacts WHERE user='$currUser' AND contact_id='$contact_id'";
@@ -44,5 +44,3 @@ if ($conn->affected_rows > 0) { // if the query affected at least one row
     }
     exit();
 }
-
-// this code SHOULD delete a contact upon being granted a specifying contact id.
