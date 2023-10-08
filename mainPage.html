@@ -1,0 +1,254 @@
+<!-- this page handles all contact CRUD operations for users managing contacts -->
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Contact Manager Group 20" />
+    <!-- title that appears in tab -->
+    <title>Contact Manager</title>
+    <!-- icon that appears in tab -->
+    <link rel="icon" type="image/x-icon" href="media/favicon.ico" />
+    <!-- sheets used for styling the page -->
+    <link rel="stylesheet" href="login.css" />
+    <link rel="stylesheet" href="modal.css" />
+    <link rel="stylesheet" href="mainPage.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Roboto:400,400i,700,700i&display=swap"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Lato:400,400i,700,700i&display=swap"
+    />
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+      crossorigin="anonymous"
+    />
+  </head>
+
+  <body>
+    <!-- ========================== on page elements ============================== -->
+
+    <!-- canvas for particles -->
+    <canvas id="backgroundCanvas"></canvas>
+    <!-- The hyperlink just runs logout.php -->
+    <a id="logoutButton" href="logout.php"
+      ><i class="fa-solid fa-right-from-bracket"></i>
+      <span class="logoutButtonText">Logout</span></a
+    >
+    <!-- contains all the central elements of the page -->
+    <div class="maincontainer">
+      <!-- container for add contact button and search bar -->
+      <div class="topbar">
+        <button class="add-contact add-contact-container">
+          <i class="fa-solid fa-user-plus add-contact"></i>Add Contact
+        </button>
+
+        <!-- allows user to search for a certain contact -->
+        <form id="searchForm" method="get">
+          <input
+            type="text"
+            id="searchInput"
+            name="search"
+            placeholder="Search contacts"
+          />
+          <i class="fa-solid fa-magnifying-glass"></i>
+        </form>
+      </div>
+
+      <div class="tableContainer">
+        <table id="contactTable" class="contact-table">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Phone Number</th>
+              <th>Date Created</th>
+              <th>Edit</th>
+              <th>Delete</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+
+      <!-- holds all the readable contacts -->
+      <div id="contactList"></div>
+      <!-- page numbers generate here -->
+      <div id="paginationControls"></div>
+    </div>
+
+    <!-- =========================== modal elements ============================== -->
+
+    <!-- +++++++ user wants to edit contact (modal) +++++++++ -->
+    <div id="addModal" class="modal">
+      <div id="addModalContent" class="modal-content">
+        <span class="close close-styling addClose"
+          ><i class="fa-solid fa-xmark close addClose"></i
+        ></span>
+        <h1>Add Contact</h1>
+        <!-- where error messages are displayed -->
+        <div class="error-message" id="addError"></div>
+        <form id="addForm" onsubmit="event.preventDefault();">
+          <!-- input fields for editing contact information -->
+          <!-- field for adding first name -->
+          <div class="modal-input addInput">
+            <input
+              type="text"
+              id="firstname"
+              placeholder="First Name"
+              name="firstname"
+              required
+            />
+            <i class="bx bxs-user"></i>
+          </div>
+          <!-- field for adding last name -->
+          <div class="modal-input addInput">
+            <input
+              type="text"
+              id="lastname"
+              placeholder="Last Name"
+              name="lastname"
+              required
+            />
+            <i class="fa-solid fa-users"></i>
+          </div>
+          <!-- field for adding email address -->
+          <div class="modal-input addInput">
+            <input
+              type="text"
+              id="email"
+              placeholder="Email Address"
+              name="email"
+              required
+            />
+            <i class="fa-solid fa-envelope"></i>
+          </div>
+          <!-- field for adding phone number -->
+          <div class="modal-input addInput">
+            <input
+              type="text"
+              id="phonenumber"
+              placeholder="Phone Number"
+              name="phonenumber"
+              required
+            />
+            <i class="fa-solid fa-phone"></i>
+          </div>
+          <!-- submit button for the form -->
+          <button type="submit" id="addBtn" class="btn save-btn">
+            Add Contact
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <!-- +++++++++++++ user wants to edit contact (modal) +++++++++++++++ -->
+    <div id="editModal" class="modal">
+      <div id="editModalContent" class="modal-content">
+        <span class="close close-styling editClose"
+          ><i class="fa-solid fa-xmark close editClose"></i
+        ></span>
+        <h1>Edit Contact</h1>
+        <!-- where error messages are displayed -->
+        <div class="error-message" id="editError"></div>
+        <form id="editForm" onsubmit="event.preventDefault();">
+          <!-- input fields for editing contact information -->
+          <!-- field for editing first name -->
+          <div class="modal-input editInput">
+            <input
+              type="text"
+              id="newFirstname"
+              placeholder="First Name"
+              name="newFirstname"
+              required
+            />
+            <i class="bx bxs-user"></i>
+          </div>
+          <!-- field for editing last name -->
+          <div class="modal-input editInput">
+            <input
+              type="text"
+              id="newLastname"
+              placeholder="Last Name"
+              name="newLastname"
+              required
+            />
+            <i class="fa-solid fa-users"></i>
+          </div>
+          <!-- field for editing email address -->
+          <div class="modal-input editInput">
+            <input
+              type="text"
+              id="newEmail"
+              placeholder="Email Address"
+              name="newEmail"
+              required
+            />
+            <i class="fa-solid fa-envelope"></i>
+          </div>
+          <!-- field for editing phone number -->
+          <div class="modal-input editInput">
+            <input
+              type="text"
+              id="newPhonenumber"
+              placeholder="Phone Number"
+              name="newPhonenumber"
+              required
+            />
+            <i class="fa-solid fa-phone"></i>
+          </div>
+          <!-- hidden field to store the contact_id, helps with identifying user on backend -->
+          <input type="hidden" id="contact_id" name="contact_id" />
+          <!-- submit button for the form -->
+          <button type="submit" id="editBtn" class="btn save-btn">
+            Save Changes
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <!-- +++++++++++++ user wants to delete contact (modal) +++++++++++++++ -->
+    <div id="deleteModal" class="modal">
+      <div id="deleteModalContent" class="modal-content">
+        <span class="close close-styling deleteClose"
+          ><i class="fa-solid fa-xmark close deleteClose"></i
+        ></span>
+        <h1>Confirm Delete?</h1>
+        <!-- where error messages are displayed -->
+        <div class="error-message" id="deleteError"></div>
+        <form id="deleteForm" onsubmit="event.preventDefault();">
+          <!-- hidden field to store the contact_id, helps with identifying user on backend -->
+          <!-- <input type="hidden" id="contact_id" name="contact_id" /> -->
+          <!-- submit button for the form -->
+          <button type="submit" id="deleteBtn" class="btn save-btn">Yes</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- =============================== scripts ================================ -->
+
+    <!-- script for background animation -->
+    <script src="particles.js"></script>
+
+    <!-- script for creating contacts -->
+    <script src="createContact.js"></script>
+
+    <!-- script for reading contacts -->
+    <script src="readContacts.js"></script>
+
+    <!-- script for updating contacts -->
+    <script src="updateContact.js"></script>
+
+    <!-- script for deleting contacts -->
+    <script src="deleteContact.js"></script>
+
+    <!-- script for checking if entries are valid -->
+    <script src="regexCheck.js"></script>
+  </body>
+</html>

@@ -1,0 +1,385 @@
+/* imports a google font family */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap");
+
+/* animation for fading elements in */
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+/* animation for fading in and out error text */
+@keyframes errorFade {
+    0% {
+        opacity: 0;
+    }
+    10% {
+        opacity: 1;
+    }
+    80% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+/* spin animation on useless icon hover */
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* animates water sloshing effect in login and registration */
+@keyframes water {
+    0%,
+    100% {
+      clip-path: polygon(
+        0% 45%,
+        16% 44%,
+        33% 50%,
+        54% 60%,
+        70% 61%,
+        84% 59%,
+        100% 52%,
+        100% 100%,
+        0% 100%
+      );
+    }
+    50% {
+      clip-path: polygon(
+        0% 60%,
+        15% 65%,
+        34% 66%,
+        51% 62%,
+        67% 50%,
+        84% 45%,
+        100% 46%,
+        100% 100%,
+        0% 100%
+      );
+    }
+  }
+
+/* setting base style properties */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+/* for particle display */
+#backgroundCanvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -1;
+}
+
+body {
+    display: flex;
+    background: #36393e;
+    min-height: 100vh;
+    align-items: center;
+    /* justify-content: center; */
+}
+
+/* .big-container {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+} */
+
+/* container styling */
+.container {
+    position: relative;
+    display: flex;
+    flex-direction: column; /* arrange children vertically */
+    align-items: center; /* center items horizontally */
+    justify-content: center; /*center items vertically */
+    min-height: 100vh;
+    /* min-width: 100%; */
+}
+
+/* styling base properties of the login/registration title */
+.login-title {
+    position: relative;
+}
+
+.login-title h2 {
+    color: #fff;
+    font-size: 4.35em;
+} 
+
+/* shrinks title if window is too small */
+@media (max-width: 768px) {
+    .login-title h2 {
+        font-size: 9vw;
+    }
+}
+
+/* allow for water sloshing effect */
+.login-title h2:nth-child(1) {
+    position: absolute;
+    color: transparent;
+    -webkit-text-stroke: 2px rgb(255, 255, 255);
+}
+
+.login-title h2:nth-child(2) {
+    position: relative;
+    color: rgb(255, 255, 255);
+    animation: water 4s ease-in-out infinite;
+}
+
+/* wrapper styling */
+.wrapper {
+    width: 420px;
+    background: transparent;
+    border: 2px solid rgba(255, 255, 255, .2);
+    backdrop-filter: blur(15px);
+    box-shadow: 0 0 10px rgba(0, 0, 0, .2);
+    color: #fff;
+    border-radius: 10px;
+    padding: 30px 40px;
+    margin-top: 50px;
+    margin-bottom: 35px;
+    /* align-self: center; */
+}
+
+/* allow elements to be faded in on page load */
+.fadeable {
+    opacity: 0;
+}
+
+.fade-in {
+    animation: fadeIn 0.5s ease-in-out forwards;
+    opacity: 1;
+}
+
+/* box heading styling */
+.wrapper h1 {
+    font-size: 36px;
+    text-align: center;
+}
+
+/* styling error messages */
+.error-message {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 15px;
+    margin-top: 5px;
+    color: rgb(255, 89, 67);
+    opacity: 0; /* initially invisible */
+    visibility: hidden; /* initially hide element */
+    transition: opacity 0.75s ease-in-out; /* defining the transition */
+}
+
+.error-message-display {
+    visibility: visible;
+    animation: errorFade 3s linear;
+}
+
+/* styling the input fields */
+.wrapper .input-box {
+    position: relative;
+    width: 100%;
+    height: 50px;
+    margin: 30px 0;
+}
+
+/* specific to the username input */
+#input-box-username {
+    margin: 15px 0 30px 0;
+}
+
+/* styling the input fields */
+.input-box input {
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    border: none;
+    outline: none;
+    border: 2px solid rgba(255, 255, 255, .2);
+    border-radius: 40px;
+    font-size: 16px;
+    color: #fff;
+    padding: 20px 45px 20px 20px;
+}
+
+/* color for plcaeholder text */
+.input-box input::placeholder {
+    color: #ffffffc4;
+    transition: transform 0.3s ease-in-out;
+}
+
+/* icon styling */
+.input-box i {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 20px;    
+}
+
+/* applies specifically to username icon */
+.input-box .bx {
+    right: 20px;
+}
+
+.input-box .bx:hover {
+    top: 30%;
+    animation: spin 3s ease infinite;
+}
+
+/* eye icon styling */
+.input-box .fa-eye {
+    cursor: pointer;
+    position: absolute;
+    right: 19px;
+    top: 50%;
+}
+
+/* when normal eye is hovered */
+.input-box .fa-eye:hover {
+    color: rgb(160, 181, 255);
+}
+
+/* when the normal eye is active */
+.input-box .fa-eye:active {
+    color: rgb(144, 189, 241);
+}
+
+.input-box .fa-eye-slash {
+    cursor: pointer;
+    right: 17.8px;
+}
+
+/* when eye with slash through it is hovered */
+.input-box .fa-eye-slash:hover {
+    color: rgb(160, 181, 255);
+}
+
+/* when eye with slash through it is active */
+.input-box .fa-eye-slash:active {
+    color: rgb(144, 189, 241);
+}
+
+/* display lock on register page */
+.input-box .fa-lock {
+    right: 23px;
+    font-size: 18px;
+}
+
+.input-box .fa-lock:hover {
+    top: 32%;
+    animation: spin 3s ease infinite;
+}
+
+/* styling the button */
+.btn {
+    width: 100%;
+    height: 45px;
+    background: #fff;
+    border: none;
+    outline: none;
+    border-radius: 40px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, .1);
+    cursor: pointer;
+    font-size: 16px;
+    color: #333;
+    font-weight: 600;
+    margin-top: 40px;
+    transition: background-color 0.2s ease-in-out, color 0.1s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+/* when register/login button hovered */
+.btn:hover {
+    background-color: rgba( 114, 137, 218, 1);
+    border-style: none;
+    color: #fff;
+    box-shadow: 0 0 5px rgba( 114, 137, 218, 1),
+                0 0 5px rgba( 114, 137, 218, 1),
+                0 0 10px rgba( 114, 137, 218, 1),
+                0 0 10px rgba( 114, 137, 218, 1);
+}
+
+.btn:active {
+    background-color: rgb(144, 189, 241);
+    box-shadow: 0 0 5px rgb(144, 189, 241),
+                0 0 5px rgb(144, 189, 241),
+                0 0 10px rgb(144, 189, 241),
+                0 0 10px rgb(144, 189, 241);
+}
+
+.wrapper .register-link {
+    font-size: 14.5px;
+    text-align: center;
+    margin: 20px 0 15px;
+}
+
+.register-link p {
+    color: #ffffffc4;
+}
+
+.register-link p a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.register-link p a:hover {
+    color: rgb(160, 181, 255);
+    text-decoration: underline;
+}
+
+.register-link p a:active {
+    color: rgb(144, 189, 241);
+}
+
+#backgroundCanvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1; /* place canvas behind other content */
+}
+
+/* input element focused */
+input:focus {
+    border-color: rgba( 114, 137, 218, 1);
+}
+
+/* input element hovered */
+input:hover {
+    background-color: rgba( 114, 137, 218, 0.2);
+}
+
+/* scroll bar styling */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: rgba( 114, 137, 218, 1);
+    border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: rgb(145, 167, 247);
+    border-radius: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background-color: #222325;
+}
